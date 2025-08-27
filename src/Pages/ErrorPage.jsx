@@ -19,7 +19,7 @@ const ErrorPage = () => {
         </div>
       </div>
       <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-        Oops! The page you’re looking for doesn’t exist.
+        Oops! The page you're looking for doesn't exist.
       </p>
       <Link
         to="/"
