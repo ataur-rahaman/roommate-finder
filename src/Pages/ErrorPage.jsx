@@ -1,9 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from "react";
+import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const ErrorPage = () => {
-    return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-4 text-center dark:bg-gray-900">
+  return (
+    <motion.main
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 1.5, type: "tween", stiffness: 200 }}
+      className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-4 text-center dark:bg-gray-900"
+    >
       <div className="relative">
         <h1 className="text-9xl font-extrabold tracking-widest text-gray-900 dark:text-white">
           404
@@ -21,8 +27,8 @@ const ErrorPage = () => {
       >
         Go Back Home
       </Link>
-    </main>
-    );
+    </motion.main>
+  );
 };
 
 export default ErrorPage;

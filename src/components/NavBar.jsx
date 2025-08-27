@@ -31,7 +31,7 @@ const NavBar = () => {
     initial={ {y: -100} }
     animate={ {y: 0} }
     transition={ {duration: 0.3, type: spring, stiffness: 200} }
-    className="bg-[#0000] shadow-sm "
+    className="bg-[#0000] "
     >
       <div className="navbar w-11/12 mx-auto flex justify-between items-center bg-[#0000]">
         <div className="flex items-center">
