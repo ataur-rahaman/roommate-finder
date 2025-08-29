@@ -53,7 +53,7 @@ const AuthProvider = ({children}) => {
     return (
         
         <AuthContext value={userInfo}>
-            {children}
+            { children }
         </AuthContext>
 
     );

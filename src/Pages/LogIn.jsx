@@ -9,12 +9,12 @@ const LogIn = () => {
   return (
     <>
       <title>Login</title>
-      <div className=" mx-auto flex justify-center items-center mt-10 bg-[#EEF6FF] py-[100px]">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0">
-          <div className="card-body">
+      <div className=" mx-auto flex justify-center items-center bg-[#EEF6FF] py-[100px]">
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 rounded-2xl shadow-2xl">
+          <div className="card-body rounded-2xl">
             <h1
               
-              className="text-4xl mb-5"
+              className="text-4xl mb-5 text-center"
             >
               Login here
             </h1>
@@ -25,7 +25,7 @@ const LogIn = () => {
                 transition={{ duration: 0.3, type: spring, stiffness: 200 }}
                 type="email"
                 name="email"
-                className="input mb-2 w-full"
+                className="input mb-2 w-full focus:border-2 focus:border-[#0EA5E9] focus:outline-0 focus:shadow-none rounded-4xl"
                 placeholder="Email"
                 id="email"
                 required
@@ -39,7 +39,7 @@ const LogIn = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  className="input mb-2 w-full"
+                  className="input mb-2 w-full focus:border-2 focus:border-[#0EA5E9] focus:outline-0 focus:shadow-none rounded-4xl"
                   placeholder="Password"
                 />
                 <button
@@ -65,7 +65,7 @@ const LogIn = () => {
                   Don't have any account?{" "}
                   <Link
                     state={location.state}
-                    to={"/signup"}
+                    to={"/register"}
                     className="link link-hover text-blue-500"
                   >
                     Sign up
@@ -80,11 +80,11 @@ const LogIn = () => {
                 className="flex flex-col"
               >
                 <input
-                  className="btn mt-4 bg-[#0EA5E9] hover:bg-[#0284C7] text-white border-0"
+                  className="btn mt-4 bg-[#0EA5E9] hover:bg-[#0284C7] text-white border-0 rounded-4xl"
                   type="submit"
                   value="Login"
                 />
-                <button className="btn bg-white text-black border-[#e5e5e5] mt-5">
+                <button className="btn bg-white text-black border-[#e5e5e5] mt-5 rounded-4xl">
                   <svg
                     aria-label="Google logo"
                     width="16"
