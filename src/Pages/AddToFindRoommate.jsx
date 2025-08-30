@@ -28,6 +28,7 @@ const AddToFindRoommate = () => {
             draggable: false,
           });
         }
+        form.reset();
       });
   };
 

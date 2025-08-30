@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React, { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../auth/AuthContext";
-import { updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
 import Swal from "sweetalert2";
 
@@ -11,7 +11,8 @@ const Register = () => {
   const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-  const { createUser } = use(AuthContext);
+  const { createUser, googleLogin } = use(AuthContext);
+  const provider = new GoogleAuthProvider();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -71,7 +72,7 @@ const Register = () => {
         } else if (error.code === "auth/invalid-email") {
           msg = "Please enter a valid email address.";
         }
-        // toast.error(msg);
+
         Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -79,6 +80,31 @@ const Register = () => {
             });
       });
   };
+
+  const handleLoginGoogle = (e) => {
+      e.preventDefault();
+      googleLogin(provider)
+      .then((result) => {
+  
+        setUser(result);
+        Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `Welcome back ${result.user.displayName} !`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+        navigate(`${location.state ? location.state : "/"}`, { state : { user } });
+      })
+      .catch((error) => {
+        if(error.code === "auth/popup-closed-by-user") {
+          setErrorMessage("You have closed the login popup window, Please try again")
+        }else {
+          setErrorMessage(error.message);
+        }
+      });
+  
+    }
 
   return (
     <>
@@ -179,7 +205,7 @@ const Register = () => {
                 value="SignUp"
               />
               <div className="flex flex-col">
-                <button className="btn bg-white text-black border-[#e5e5e5] mt-5 rounded-4xl">
+                <button onClick={handleLoginGoogle} className="btn bg-white text-black border-[#e5e5e5] mt-5 rounded-4xl">
                   <svg
                     aria-label="Google logo"
                     width="16"

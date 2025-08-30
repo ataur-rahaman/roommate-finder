@@ -23,7 +23,7 @@ const NavBar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className="hover:text-sky-500 bg-[#0000]" to={"Listing"}>
+        <NavLink className="hover:text-sky-500 bg-[#0000]" to={"listings"}>
           Browse Listing
         </NavLink>
       </li>
