@@ -1,15 +1,93 @@
-import React, { useState } from "react";
-import { Link } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { motion, spring } from "framer-motion";
+import { AuthContext } from "../auth/AuthContext";
+import { GoogleAuthProvider } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
+  const { logInUser, googleLogin } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
-  // const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const provider = new GoogleAuthProvider();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value.trim();
+    const password = e.target.password.value.trim();
+
+    setErrorMsg(null);
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+
+        if(passwordRegex.test(password) === false) {
+          setErrorMsg("❌ Password must have at least one uppercase letter, one lowercase letter, and be at least 6 characters long.");
+          return;
+        }
+
+    logInUser(email, password)
+      .then((result) => {
+
+        navigate(`${location.state ? location.state : "/"}`)
+        Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: `Welcome back ${result.user.displayName} !`,
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        (errorCode);
+        
+        if (errorCode === "auth/invalid-credential") {
+          setErrorMsg("⚠️ Please enter a valid email address or password.");
+        } else if (errorCode === "auth/user-not-found") {
+          setErrorMsg("⚠️ No account found with this email.");
+        } else if (errorCode === "auth/wrong-password") {
+          setErrorMsg("⚠️ Incorrect password. Try again.");
+        } else if (errorCode === "auth/too-many-requests") {
+          setErrorMsg("⚠️ Too many failed attempts. Please try later.");
+        } else {
+          setErrorMsg("⚠️ Something went wrong. Please try again.");
+        }
+      });
+  };
+  const handleLoginGoogle = (e) => {
+    e.preventDefault();
+    googleLogin(provider)
+    .then((result) => {
+
+      setUser(result);
+      Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: `Welcome back ${result.user.displayName} !`,
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+      navigate(`${location.state ? location.state : "/"}`, { state : { user } });
+    })
+    .catch((error) => {
+      if(error.code === "auth/popup-closed-by-user") {
+        setErrorMsg("You have closed the login popup window, Please try again")
+      }else {
+        setErrorMsg(error.message);
+      }
+    });
+
+  }
+
+  
 
   return (
     <>
       <title>Login</title>
-      <div className=" mx-auto flex justify-center items-center bg-[#EEF6FF] py-[100px]">
+      <div className=" mx-auto flex justify-center items-center bg-[#EEF6FF] py-[100px] px-2">
         <div className="card bg-base-100 w-full max-w-sm shrink-0 rounded-2xl shadow-2xl">
           <div className="card-body rounded-2xl">
             <h1
@@ -18,7 +96,7 @@ const LogIn = () => {
             >
               Login here
             </h1>
-            <form>
+            <form onSubmit={handleLogin}>
               <motion.input
                 initial={{ x: -100 }}
                 animate={{ x: 0 }}
@@ -52,12 +130,12 @@ const LogIn = () => {
               </motion.div>
 
               {
-                //   errorMsg ?
-                //   <div className="text-red-500 p-3">
-                //   {errorMsg}
-                // </div>
-                // :
-                // ""
+                  errorMsg ?
+                  <div className="text-red-500 p-3">
+                  {errorMsg}
+                </div>
+                :
+                ""
               }
 
               <div>
@@ -84,7 +162,7 @@ const LogIn = () => {
                   type="submit"
                   value="Login"
                 />
-                <button className="btn bg-white text-black border-[#e5e5e5] mt-5 rounded-4xl">
+                <button onClick={handleLoginGoogle} className="btn bg-white text-black border-[#e5e5e5] mt-5 rounded-4xl">
                   <svg
                     aria-label="Google logo"
                     width="16"

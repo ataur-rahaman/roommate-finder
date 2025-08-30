@@ -8,7 +8,7 @@ import { AuthContext } from "../auth/AuthContext";
 const NavBar = () => {
   const location = useLocation();
   const userData = location.state;
-  const { user } = use(AuthContext);
+  const { user, logOutUser } = use(AuthContext);
   console.log(user);
   const links = (
     <>
@@ -30,7 +30,9 @@ const NavBar = () => {
     </>
   );
 
-  const handleLogOut = () => {};
+  const handleLogOut = () => {
+    logOutUser();
+  };
 
   return (
     <motion.div
@@ -131,13 +133,13 @@ const NavBar = () => {
               <>
                 <Link
                   to={"login"}
-                  className="py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-black border border-[#7dd3fc] mr-2"
+                  className="py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-black border border-[#7dd3fc] mr-2 text-xl"
                 >
                   Login
                 </Link>
                 <Link
-                  to={"signup"}
-                  className="py-2 px-4 bg-[#0EA5E9] rounded-4xl text-white border-0"
+                  to={"register"}
+                  className="py-2 px-4 bg-[#0EA5E9] rounded-4xl text-white border-0 text-xl"
                 >
                   Sign Up
                 </Link>

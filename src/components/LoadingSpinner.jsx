@@ -2,8 +2,8 @@ import React from 'react';
 
 const LoadingSpinner = () => {
     return (
-        <div>
-            
+        <div className='flex items-center justify-center min-h-dvh'>
+            <span className="loading loading-bars loading-xl"></span>
         </div>
     );
 };

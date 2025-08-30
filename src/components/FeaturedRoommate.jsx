@@ -1,11 +1,26 @@
-import React from 'react';
+import React from "react";
+import FeaturedCard from "./FeaturedCard";
 
-const FeaturedRoommate = () => {
-    return (
-        <div>
-            FeaturedRoommate
-        </div>
-    );
+const FeaturedRoommate = ({ featuredData }) => {
+  console.log(featuredData);
+  return (
+    
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+  <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center leading-tight tracking-tight mb-10 sm:mb-14">
+    Recommended <span className="text-[#0EA5E9]">For You</span>
+  </h1>
+
+  <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      featuredData.map(singleData => (
+        <FeaturedCard key={singleData._id} singleData={singleData} />
+      ))
+    }
+  </div>
+</div>
+
+  );
 };
 
 export default FeaturedRoommate;
