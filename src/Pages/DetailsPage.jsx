@@ -57,7 +57,7 @@ const DetailsPage = () => {
         </div>
         <div className='flex items-center cursor-pointer'>
           <motion.span 
-          whileHover={{scale: 1.1}}
+          whileHover={{scale: 1.03}}
           className='flex items-center gap-2 text-white text-md font-bold py-2 px-3 bg-[#0EA5E9] hover:shadow-xs rounded-[8px]'><SlLike /> Like</motion.span>
         </div>
       </div>
