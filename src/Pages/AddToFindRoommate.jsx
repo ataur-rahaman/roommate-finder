@@ -35,7 +35,7 @@ const AddToFindRoommate = () => {
   return (
     <div className="bg-[#E7F6FD] py-[100px] px-2">
       <form onSubmit={handleAddToFind} className="max-w-5xl mx-auto">
-        <h2 className="text-2xl text-center md:text-5xl font-extrabold leading-tight tracking-tight mb-[50px]">
+        <h2 className="text-2xl text-black text-center md:text-5xl font-extrabold leading-tight tracking-tight mb-[50px]">
           Add Your Roommate <span className="text-[#0EA5E9]">Listing</span>
         </h2>
         <div className="gap-2 grid grid-cols-1 md:grid-cols-2">

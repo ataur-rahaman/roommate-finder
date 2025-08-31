@@ -48,7 +48,7 @@ const DetailsPage = () => {
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold mt-4 mb-1">Description</h2>
+          <h2 className="text-lg text-black font-semibold mt-4 mb-1">Description</h2>
           <p className="whitespace-pre-line bg-[#E7F6FD] p-4 rounded-md text-gray-800 break-words">
             {description}
           </p>

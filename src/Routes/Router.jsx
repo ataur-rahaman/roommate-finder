@@ -9,6 +9,8 @@ import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import LoadingSpinner from "../components/LoadingSpinner";
 import BrowseListingsPage from "../Pages/BrowseListingsPage";
+import MyListingsPage from "../Pages/MyListingsPage";
+import UpdateFindPostPage from "../Pages/UpdateFindPostPage";
 
 
 const router = createBrowserRouter([
@@ -24,9 +26,19 @@ const router = createBrowserRouter([
             },
             {
                 path: "listings",
-                loader: () => fetch("http://localhost:3000/listings"),
+                loader: () => fetch("http://localhost:3000/all-listings"),
                 hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
                 Component: BrowseListingsPage
+            },
+            {
+                path: "/my-listings",
+                element: <PrivateRoute><MyListingsPage></MyListingsPage></PrivateRoute>
+            },
+            {
+                path: "/update/:id",
+                loader: ({params}) => fetch(`http://localhost:3000/listings/${params.id}`),
+                hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
+                element: <PrivateRoute><UpdateFindPostPage></UpdateFindPostPage></PrivateRoute>
             },
             {
                 path: "login",

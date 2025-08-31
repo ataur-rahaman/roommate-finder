@@ -6,8 +6,8 @@ const FeaturedRoommate = ({ featuredData }) => {
   return (
     
 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-  <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center leading-tight tracking-tight mb-10 sm:mb-14">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-white">
+  <h1 className="text-3xl text-black sm:text-4xl md:text-5xl font-extrabold text-center leading-tight tracking-tight mb-10 sm:mb-14">
     Recommended <span className="text-[#0EA5E9]">For You</span>
   </h1>
 

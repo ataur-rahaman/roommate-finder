@@ -27,6 +27,14 @@ const NavBar = () => {
           Browse Listing
         </NavLink>
       </li>
+      {
+        user && 
+        <li>
+        <NavLink className="hover:text-sky-500 bg-[#0000]" to={"my-listings"}>
+          My Listing
+        </NavLink>
+      </li>
+      }
     </>
   );
 
@@ -39,9 +47,9 @@ const NavBar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3, type: spring, stiffness: 200 }}
-      className="bg-[#0000] "
+      className="bg-white "
     >
-      <div className="navbar w-11/12 mx-auto flex justify-between items-center bg-[#0000]">
+      <div className="navbar text-black w-11/12 mx-auto flex justify-between items-center bg-[#0000]">
         <div className="flex items-center">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -120,11 +128,14 @@ const NavBar = () => {
                     <li className=" text-[18px] mb-3">
                       {user.displayName}
                     </li>
+                    <li className="text-white mb-3">
+                      <Link to="/my-listings" className="text-[14px] font-bold bg-sky-500 hover:bg-sky-600 text-center">My Listings 📃</Link>
+                    </li>
                     <li
                       onClick={handleLogOut}
                       className="text-white"
                     >
-                      <p className="text-[16px] font-bold bg-[#0EA5E9] text-center">Logout</p>
+                      <p className="text-[16px] font-bold bg-red-500 hover:bg-red-600 text-center">Logout</p>
                     </li>
                   </ul>
                 </div>

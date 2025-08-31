@@ -21,7 +21,7 @@ const BrowseListingsPage = () => {
               <th className="px-4 py-3 text-left">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className='text-black'>
             {listings.map((item) => (
               <tr key={item._id} className="border-t hover:bg-sky-50 transition duration-200">
                 <td className="px-4 py-3">{item.title}</td>
@@ -40,7 +40,7 @@ const BrowseListingsPage = () => {
                 <td className="px-4 py-3">
                   <Link to={`/details/${item._id}`}>
                     <button className="bg-sky-500 hover:bg-sky-600 cursor-pointer text-white px-4 py-1.5 rounded-md text-sm">
-                      See More
+                      Details
                     </button>
                   </Link>
                 </td>

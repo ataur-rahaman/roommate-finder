@@ -7,7 +7,7 @@ export function EmblaCarousel() {
 
   return (
     <div className='flex flex-col items-center justify-center py-[50px] md:py-[100px] px-2 bg-[#E7F6FD]'>
-        <h1 className='text-4xl text-center md:text-5xl font-extrabold leading-tight tracking-tight mb-[50px]'>Find a Roommate Who <span className='text-[#0EA5E9]'>Fits Your Life</span></h1>
+        <h1 className='text-4xl text-black text-center md:text-5xl font-extrabold leading-tight tracking-tight mb-[50px]'>Find a Roommate Who <span className='text-[#0EA5E9]'>Fits Your Life</span></h1>
         <div className="embla max-w-7xl rounded-3xl shadow-xl cursor-grab" ref={emblaRef}>
         <div className="embla__container rounded-3xl">
             <div className="embla__slide"><img className='rounded-3xl' src="https://i.ibb.co.com/pBtVpVR8/banner1.webp" alt="banner-1" /></div>
