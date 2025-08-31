@@ -1,5 +1,7 @@
 import React from 'react';
-import { useLoaderData } from 'react-router'; // Use react-router-dom not 'react-router'
+import { useLoaderData } from 'react-router';
+import { SlLike } from "react-icons/sl";
+import { motion } from "framer-motion";
 
 const DetailsPage = () => {
   const {
@@ -52,6 +54,11 @@ const DetailsPage = () => {
           <p className="whitespace-pre-line bg-[#E7F6FD] p-4 rounded-md text-gray-800 break-words">
             {description}
           </p>
+        </div>
+        <div className='flex items-center cursor-pointer'>
+          <motion.span 
+          whileHover={{scale: 1.1}}
+          className='flex items-center gap-2 text-white text-md font-bold py-2 px-3 bg-[#0EA5E9] hover:shadow-xs rounded-[8px]'><SlLike /> Like</motion.span>
         </div>
       </div>
     </div>
