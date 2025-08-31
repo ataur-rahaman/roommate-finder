@@ -147,7 +147,7 @@ const UpdateFindPostPage = () => {
         <div className="max-w-1/2 mx-auto">
           <input
             type="submit"
-            value="Add Now"
+            value="Update"
             className="btn mt-4 bg-[#0EA5E9] hover:bg-[#0284C7] text-white text-xl border-0 rounded-4xl w-full"
           />
         </div>
