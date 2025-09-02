@@ -9,6 +9,7 @@ import { Bounce, toast } from "react-toastify";
 const DetailsPage = () => {
   const { user } = use(AuthContext);
   const [likesData, setLikesData] = useState(null);
+  const [phoneShow, setPhoneShow] = useState(false);
   // console.log(user);
   const {
     title,
@@ -60,7 +61,8 @@ const DetailsPage = () => {
               theme: "light",
               transition: Bounce,
             });
-            setLikesData(likesData + 1)
+            setLikesData(likesData + 1);
+            setPhoneShow(true)
           }
         });
     }
@@ -72,9 +74,21 @@ const DetailsPage = () => {
     .then(likes => {
       console.log(likes);
       setLikesData(likes.count);
+    });
+
+    fetch(`http://localhost:3000/check-like?likerEmail=${user.email}&thisId=${_id}`)
+    .then(res => res.json())
+    .then(checkData => {
+      console.log(checkData);
+      if(checkData?.likerEmail === user.email && checkData?.thisId === _id || userEmail === user?.email){
+        setPhoneShow(true);
+      }
+      else{
+        setPhoneShow(false);
+      }
     })
-  },[_id])
-// console.log(likesData);
+  },[_id, user.email, userEmail])
+
   return (
     <div className="min-h-screen bg-[#F0F9FF] flex items-center justify-center p-4">
       <div className="max-w-3xl w-full bg-white shadow-xl rounded-xl p-6 space-y-4">
@@ -98,7 +112,7 @@ const DetailsPage = () => {
             <span className="font-semibold">Availability:</span> {availability}
           </div>
           <div>
-            <span className="font-semibold">Contact:</span> {contactInfo}
+            <span className="font-semibold">Contact:</span> {phoneShow ? contactInfo : "01#########"}
           </div>
           <div>
             <span className="font-semibold">Posted By:</span> {userName}
@@ -125,6 +139,11 @@ const DetailsPage = () => {
             <SlLike /> Like {likesData}
           </motion.span>
         </div>
+        <p className="text-black">
+          {
+          phoneShow ? contactInfo : ""
+        }
+        </p>
       </div>
     </div>
   );
