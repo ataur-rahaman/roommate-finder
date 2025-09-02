@@ -2,7 +2,7 @@ import React from "react";
 import FeaturedCard from "./FeaturedCard";
 
 const FeaturedRoommate = ({ featuredData }) => {
-  console.log(featuredData);
+  // console.log(featuredData);
   return (
     
 

@@ -1,9 +1,14 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { use } from "react";
+import { useLoaderData } from "react-router";
 import { SlLike } from "react-icons/sl";
 import { motion } from "framer-motion";
+import { AuthContext } from "../auth/AuthContext";
+import Swal from "sweetalert2";
+import { Bounce, toast } from "react-toastify";
 
 const DetailsPage = () => {
+  const { user } = use(AuthContext);
+  // console.log(user);
   const {
     title,
     location,
@@ -15,7 +20,49 @@ const DetailsPage = () => {
     availability,
     userEmail,
     userName,
+    _id,
   } = useLoaderData();
+
+  const handleLikes = () => {
+    const thisId = _id;
+    const thisEmail = userEmail;
+    const likerEmail = user.email;
+    const likeData = { thisId, thisEmail, likerEmail };
+
+    if (thisEmail === likerEmail) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You are not able to like your won listing",
+      });
+      return;
+    } else {
+      fetch("http://localhost:3000/likes", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(likeData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            toast.success("You liked this listing", {
+              position: "bottom-right",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+            });
+          }
+        });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#F0F9FF] flex items-center justify-center p-4">
@@ -50,15 +97,21 @@ const DetailsPage = () => {
         </div>
 
         <div>
-          <h2 className="text-lg text-black font-semibold mt-4 mb-1">Description</h2>
+          <h2 className="text-lg text-black font-semibold mt-4 mb-1">
+            Description
+          </h2>
           <p className="whitespace-pre-line bg-[#E7F6FD] p-4 rounded-md text-gray-800 break-words">
             {description}
           </p>
         </div>
-        <div className='flex items-center cursor-pointer'>
-          <motion.span 
-          whileHover={{scale: 1.03}}
-          className='flex items-center gap-2 text-white text-md font-bold py-2 px-3 bg-[#0EA5E9] hover:shadow-xs rounded-[8px]'><SlLike /> Like</motion.span>
+        <div className="flex items-center ">
+          <motion.span
+            onClick={handleLikes}
+            whileHover={{ scale: 1.03 }}
+            className="flex items-center cursor-pointer gap-2 text-white text-md font-bold py-2 px-3 bg-[#0EA5E9] hover:shadow-xs rounded-[8px]"
+          >
+            <SlLike /> Like
+          </motion.span>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ const NavBar = () => {
   const location = useLocation();
   const userData = location.state;
   const { user, logOutUser } = use(AuthContext);
-  console.log(user);
+  // console.log(user);
   const links = (
     <>
       <li>

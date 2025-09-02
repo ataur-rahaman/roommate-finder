@@ -30,7 +30,7 @@ const MyListingsPage = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount) {
                 const newMyData = myData.filter(data => data._id !== _id);
                 setMyData(newMyData);
