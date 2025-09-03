@@ -20,7 +20,6 @@ const NavBar = () => {
       setTheme(savedTheme);
     }
   },[setTheme])
-  // console.log(user);
   const links = (
     <>
       <li>
@@ -63,7 +62,6 @@ const NavBar = () => {
       localStorage.setItem("theme", "light");
     }
   }
-  console.log(theme);
 
   return (
     <motion.div
@@ -94,7 +92,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-white"
             >
               {links}
             </ul>
@@ -168,14 +166,14 @@ const NavBar = () => {
                 <Link
                   to={"login"}
                   data-tooltip-id="loginBtn"
-                  className={theme === "light" ? "py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-black border border-[#7dd3fc] mr-2 text-xl" : "py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-white hover:text-black border border-[#7dd3fc] mr-2 text-xl"}
+                  className={theme === "light" ? "md:py-2 py-2 md:px-4 px-3 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-black border border-[#7dd3fc] mr-2 md:text-xl text-sm" : "md:py-2 py-2 md:px-4 px-3 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-white hover:text-black border border-[#7dd3fc] mr-2 md:text-xl text-sm"}
                 >
                   Login
                 </Link>
                 <Link
                   to={"register"}
                   data-tooltip-id="registerBtn"
-                  className="py-2 px-4 bg-[#0EA5E9] rounded-4xl text-white border-0 text-xl"
+                  className="py-2 px-3 md:py-2 md:px-4 bg-[#0EA5E9] rounded-4xl text-white border-0 md:text-xl text-sm"
                 >
                   Sign Up
                 </Link>

@@ -10,7 +10,6 @@ const AddToFindRoommate = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newListing = Object.fromEntries(formData.entries());
-    console.log(newListing);
 
     fetch("http://localhost:3000/listings", {
       method: "POST",
@@ -35,7 +34,7 @@ const AddToFindRoommate = () => {
   return (
     <>
     <title>Add your listing</title>
-    <div className="bg-[#E7F6FD] py-[100px] px-2">
+    <div className="bg-[#E7F6FD] py-[50px] md:py-[100px] px-2">
       <form onSubmit={handleAddToFind} className="max-w-5xl mx-auto">
         <h2 className="text-2xl text-black text-center md:text-5xl font-extrabold leading-tight tracking-tight mb-[50px]">
           Add Your Roommate <span className="text-[#0EA5E9]">Listing</span>

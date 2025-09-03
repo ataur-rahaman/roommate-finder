@@ -30,7 +30,6 @@ const MyListingsPage = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log(data);
             if (data.deletedCount) {
                 const newMyData = myData.filter(data => data._id !== _id);
                 setMyData(newMyData);
@@ -101,7 +100,7 @@ const MyListingsPage = () => {
                     </Link>
                     <button
                       onClick={() => handleDelete(item._id)}
-                      className="bg-red-700 hover:bg-red-600 cursor-pointer text-white px-4 py-1.5 rounded-md text-sm"
+                      className="bg-red-700 hover:bg-red-600 cursor-pointer text-white px-4 py-1.5 rounded-md text-sm mt-2 md:mt-0"
                     >
                       Delete
                     </button>

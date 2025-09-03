@@ -11,7 +11,6 @@ const DetailsPage = () => {
   const { user } = use(AuthContext);
   const [likesData, setLikesData] = useState(null);
   const [phoneShow, setPhoneShow] = useState(false);
-  // console.log(user);
   const {
     title,
     location,
@@ -49,7 +48,6 @@ const DetailsPage = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.insertedId) {
             toast.success("You liked this listing", {
               position: "bottom-right",
@@ -73,14 +71,12 @@ const DetailsPage = () => {
     fetch(`http://localhost:3000/likes/count?thisId=${_id}`)
     .then(res => res.json())
     .then(likes => {
-      console.log(likes);
       setLikesData(likes.count);
     });
 
     fetch(`http://localhost:3000/check-like?likerEmail=${user.email}&thisId=${_id}`)
     .then(res => res.json())
     .then(checkData => {
-      console.log(checkData);
       if(checkData?.likerEmail === user.email && checkData?.thisId === _id || userEmail === user?.email){
         setPhoneShow(true);
       }
