@@ -1,10 +1,8 @@
-import React, { use } from "react";
+import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
-import { ThemeContext } from "../theme/ThemeContext";
 
 const FeaturedCard = ({ singleData }) => {
-    const {theme} = use(ThemeContext);
   return (
     <div className="card border-2 border-gray-900 shadow-md rounded-xl overflow-hidden">
       <div className="card-body bg-[url('https://i.ibb.co.com/chSRjLWg/bg-good.webp')] bg-cover bg-center bg-no-repeat p-4 sm:p-6 rounded-xl space-y-4">
@@ -17,7 +15,7 @@ const FeaturedCard = ({ singleData }) => {
         </h2>
 
         <p className="text-sm text-white sm:text-base text-center py-3 px-4 bg-gray-600 rounded-[10px] shadow-2xl break-words">
-          {singleData.description}
+          {singleData.title}
         </p>
 
         <div className="flex text-black flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4 py-2 px-3 bg-gray-600 rounded-[10px] shadow-2xl">

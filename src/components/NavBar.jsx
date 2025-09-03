@@ -6,6 +6,7 @@ import { FaSlideshare } from "react-icons/fa";
 import { MdLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { AuthContext } from "../auth/AuthContext";
 import { ThemeContext } from "../theme/ThemeContext";
+import { Tooltip } from "react-tooltip";
 
 const NavBar = () => {
   const location = useLocation();
@@ -166,12 +167,14 @@ const NavBar = () => {
               <>
                 <Link
                   to={"login"}
+                  data-tooltip-id="loginBtn"
                   className={theme === "light" ? "py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-black border border-[#7dd3fc] mr-2 text-xl" : "py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-white hover:text-black border border-[#7dd3fc] mr-2 text-xl"}
                 >
                   Login
                 </Link>
                 <Link
                   to={"register"}
+                  data-tooltip-id="registerBtn"
                   className="py-2 px-4 bg-[#0EA5E9] rounded-4xl text-white border-0 text-xl"
                 >
                   Sign Up
@@ -180,10 +183,22 @@ const NavBar = () => {
             )}
           </div>
           <div onClick={handleTheme}>
-            {theme === "light" ? <MdOutlineDarkMode className="text-3xl cursor-pointer" /> : <MdLightMode className="text-3xl cursor-pointer text-yellow-500" />}
+            {theme === "light" ? <MdOutlineDarkMode className="text-3xl cursor-pointer" data-tooltip-id="darkMode" /> : <MdLightMode className="text-3xl cursor-pointer text-yellow-500" data-tooltip-id="lightMode" />}
           </div>
         </div>
       </div>
+      <Tooltip id="loginBtn">
+        Click here to login
+      </Tooltip>
+      <Tooltip id="registerBtn">
+        Click here to signUp
+      </Tooltip>
+      <Tooltip id="darkMode">
+        Click here for dark mode
+      </Tooltip>
+      <Tooltip id="lightMode">
+        Click here for light mode
+      </Tooltip>
     </motion.div>
   );
 };

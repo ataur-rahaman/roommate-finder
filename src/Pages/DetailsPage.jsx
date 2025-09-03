@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../auth/AuthContext";
 import Swal from "sweetalert2";
 import { Bounce, toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 const DetailsPage = () => {
   const { user } = use(AuthContext);
@@ -134,6 +135,7 @@ const DetailsPage = () => {
         </div>
         <div className="flex items-center ">
           <motion.span
+          data-tooltip-id="likeBtn"
             onClick={handleLikes}
             whileHover={{ scale: 1.03 }}
             className="flex items-center cursor-pointer gap-2 text-white text-md font-bold py-2 px-3 bg-[#0EA5E9] hover:shadow-xs rounded-[8px]"
@@ -147,6 +149,9 @@ const DetailsPage = () => {
         }
         </p>
       </div>
+      <Tooltip id="likeBtn">
+        Click to like this post
+      </Tooltip>
     </div>
     </>
   );
