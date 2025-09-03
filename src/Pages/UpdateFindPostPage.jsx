@@ -46,6 +46,8 @@ const UpdateFindPostPage = () => {
   };
 
   return (
+    <>
+    <title>Update listing</title>
     <div className="bg-[#E7F6FD] py-[100px] px-2">
       <form onSubmit={handleUpdateListing} className="max-w-5xl mx-auto">
         <h2 className="text-2xl text-black text-center md:text-5xl font-extrabold leading-tight tracking-tight mb-[50px]">
@@ -153,6 +155,7 @@ const UpdateFindPostPage = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

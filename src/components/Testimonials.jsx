@@ -1,4 +1,8 @@
+import { use } from "react";
+import { ThemeContext } from "../theme/ThemeContext";
+
 const Testimonials = () => {
+  const {theme} = use(ThemeContext);
   const testimonials = [
     {
       name: "Nadia Hossain",
@@ -21,18 +25,18 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="bg-white py-[50px] md:py-[100px] px-4">
+    <section className={`${theme === "light" ? "bg-white" : "bg-gray-700"} py-[50px] md:py-[100px] px-4`}>
       <div className="max-w-6xl mx-auto text-center space-y-10">
         <h2 className="text-3xl font-bold text-[#0EA5E9]">What Our Users Say</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-[#F0F9FF] p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-left"
+              className={`${theme === "light" ? "bg-[#F0F9FF]" : "bg-gray-500"} p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-left`}
             >
-              <p className="text-gray-800 mb-4">“{item.message}”</p>
+              <p className={`${theme === "light" ? "text-gray-800" : "text-gray-100"} mb-4`}>“{item.message}”</p>
               <p className="font-semibold text-[#0EA5E9]">{item.name}</p>
-              <p className="text-sm text-gray-500">{item.location}</p>
+              <p className={`text-sm ${theme === "light" ? "text-gray-500" : "text-gray-200"}`}>{item.location}</p>
             </div>
           ))}
         </div>

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 
 const ErrorPage = () => {
   return (
+    <>
+    <title>Error</title>
     <motion.main
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
@@ -28,6 +30,7 @@ const ErrorPage = () => {
         Go Back Home
       </Link>
     </motion.main>
+    </>
   );
 };
 

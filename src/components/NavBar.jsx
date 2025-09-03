@@ -3,12 +3,15 @@ import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router";
 import { spring } from "framer-motion";
 import { FaSlideshare } from "react-icons/fa";
+import { MdLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { AuthContext } from "../auth/AuthContext";
+import { ThemeContext } from "../theme/ThemeContext";
 
 const NavBar = () => {
   const location = useLocation();
   const userData = location.state;
   const { user, logOutUser } = use(AuthContext);
+  const {theme, setTheme} = use(ThemeContext);
   // console.log(user);
   const links = (
     <>
@@ -42,14 +45,24 @@ const NavBar = () => {
     logOutUser();
   };
 
+  const handleTheme = () => {
+    if(theme === "light"){
+      setTheme("dark")
+    }
+    if(theme === "dark"){
+      setTheme("light")
+    }
+  }
+  console.log(theme);
+
   return (
     <motion.div
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3, type: spring, stiffness: 200 }}
-      className="bg-white "
+      className={theme === "light" ? "bg-white" : "bg-gray-800"}
     >
-      <div className="navbar text-black w-11/12 mx-auto flex justify-between items-center bg-[#0000]">
+      <div className={ `${theme === "light" ? "navbar text-black w-11/12 mx-auto flex justify-between items-center bg-[#0000]" : "navbar text-white w-11/12 mx-auto flex justify-between items-center bg-gray-800"}`}>
         <div className="flex items-center">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -78,7 +91,7 @@ const NavBar = () => {
           </div>
           <div className="flex gap-1 items-center w-fit">
             <div>
-              <FaSlideshare className="text-4xl text-[#40bffa]" />
+              <FaSlideshare className={`${theme === "light" ? "text-4xl text-[#40bffa]" : "text-4xl text-[#40bffa]"}`} />
             </div>
             <Link className="hidden md:block text-lg font-extrabold" to={"/"}>
               <span>Roommate</span>
@@ -94,7 +107,7 @@ const NavBar = () => {
           </div>
         </div>
 
-        <div className="">
+        <div className="flex justify-between items-center gap-5">
           <div>
             {user ? (
               <>
@@ -144,7 +157,7 @@ const NavBar = () => {
               <>
                 <Link
                   to={"login"}
-                  className="py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-black border border-[#7dd3fc] mr-2 text-xl"
+                  className={theme === "light" ? "py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-black border border-[#7dd3fc] mr-2 text-xl" : "py-2 px-4 bg-transparent hover:bg-[#F0F9FF] rounded-4xl text-white hover:text-black border border-[#7dd3fc] mr-2 text-xl"}
                 >
                   Login
                 </Link>
@@ -156,6 +169,9 @@ const NavBar = () => {
                 </Link>
               </>
             )}
+          </div>
+          <div onClick={handleTheme}>
+            {theme === "light" ? <MdOutlineDarkMode className="text-3xl cursor-pointer" /> : <MdLightMode className="text-3xl cursor-pointer text-yellow-500" />}
           </div>
         </div>
       </div>

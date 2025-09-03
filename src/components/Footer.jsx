@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { use } from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { ThemeContext } from '../theme/ThemeContext';
 
 const Footer = () => {
+  const {theme} = use(ThemeContext);
+
     return (
-        <footer className="bg-[#0f172a] text-white">
+        <footer className={`${theme === "dark" ? "bg-[#0f172a] text-white" : "bg-gray-200 text-black"} flex flex-col  justify-center`}>
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         
 
@@ -37,7 +40,7 @@ const Footer = () => {
 
         <div>
           <h2 className="text-lg font-semibold mb-4">Follow Us</h2>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 text-white">
             <a href="https://facebook.com" target="_blank" rel="noreferrer" className="p-2 bg-sky-600 rounded-full hover:bg-sky-500 transition">
               <FaFacebookF />
             </a>

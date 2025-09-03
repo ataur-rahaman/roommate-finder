@@ -48,6 +48,7 @@ const MyListingsPage = () => {
 
   return (
     <>
+    <title>My listing</title>
       <div className="p-4 md:p-8">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center text-sky-500">
           My Roommate Listings

@@ -90,9 +90,11 @@ const DetailsPage = () => {
   },[_id, user.email, userEmail])
 
   return (
+    <>
+    <title>Listing details</title>
     <div className="min-h-screen bg-[#F0F9FF] flex items-center justify-center p-4">
       <div className="max-w-3xl w-full bg-white shadow-xl rounded-xl p-6 space-y-4">
-        <p className="text-black text-xl border-2 border-t-0 border-x-0 py-4 px-3 border-[#E7F6FD] rounded-[5px]"><span className="text-green-500 text-2xl p-2 border-2 rounded-[5px]">{likesData}</span> people interested in</p>
+        <p className="text-black text-xl border-[#E7F6FD] rounded-[5px]"><span className="text-green-500 text-2xl font-bold">{likesData}</span> people interested in</p>
         <h1 className="text-2xl font-bold text-[#0EA5E9]">{title}</h1>
 
         <div className="grid sm:grid-cols-2 gap-4 text-sm text-gray-700">
@@ -146,6 +148,7 @@ const DetailsPage = () => {
         </p>
       </div>
     </div>
+    </>
   );
 };
 

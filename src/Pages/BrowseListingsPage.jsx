@@ -5,6 +5,8 @@ const BrowseListingsPage = () => {
   const listings = useLoaderData();
 
   return (
+    <>
+    <title>All listing</title>
     <div className="p-4 md:p-8">
       <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center text-sky-500">Browse Roommate Listings</h1>
       <div className='text-center md:text-start'><span className='mb-4 text-2xl font-bold inline-block'>Total listing: <span className='text-green-500'>{listings.length}</span></span></div>
@@ -50,6 +52,7 @@ const BrowseListingsPage = () => {
         </table>
       </div>
     </div>
+    </>
   );
 };
 
