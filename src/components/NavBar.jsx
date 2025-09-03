@@ -146,7 +146,7 @@ const NavBar = () => {
                     tabIndex={0}
                     className="menu menu-sm dropdown-content rounded-box z-1 mt-0 w-52 p-2 shadow-2xl top-4 right-4 bg-[#fffffff3]"
                   >
-                    <li className=" text-[18px] mb-3">
+                    <li className=" text-[18px] mb-3 text-black">
                       {user.displayName}
                     </li>
                     <li className="text-white mb-3">
