@@ -8,7 +8,7 @@ const MyListingsPage = () => {
   const [myData, setMyData] = useState([]);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/listings?email=${user.email}`)
+      fetch(`https://roommate-finder-server-red.vercel.app/listings?email=${user.email}`)
         .then((res) => res.json())
         .then((allData) => setMyData(allData));
     }
@@ -25,7 +25,7 @@ const MyListingsPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/listings/${_id}`, {
+        fetch(`https://roommate-finder-server-red.vercel.app/listings/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

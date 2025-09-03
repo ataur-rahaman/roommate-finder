@@ -12,7 +12,7 @@ const UpdateFindPostPage = () => {
     const formData = new FormData(form);
     const newListing = Object.fromEntries(formData.entries());
 
-    fetch(`http://localhost:3000/listings/${thisData._id}`, {
+    fetch(`https://roommate-finder-server-red.vercel.app/listings/${thisData._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

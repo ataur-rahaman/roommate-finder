@@ -11,7 +11,7 @@ const AddToFindRoommate = () => {
     const formData = new FormData(form);
     const newListing = Object.fromEntries(formData.entries());
 
-    fetch("http://localhost:3000/listings", {
+    fetch("https://roommate-finder-server-red.vercel.app/listings", {
       method: "POST",
       headers: {
         "content-Type": "application/json",

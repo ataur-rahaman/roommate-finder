@@ -20,13 +20,13 @@ const router = createBrowserRouter([
         children:[
             {
                 index: true,
-                loader: () => fetch("http://localhost:3000/featured-listings"),
+                loader: () => fetch("https://roommate-finder-server-red.vercel.app/featured-listings"),
                 hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
                 Component: Home
             },
             {
                 path: "listings",
-                loader: () => fetch("http://localhost:3000/all-listings"),
+                loader: () => fetch("https://roommate-finder-server-red.vercel.app/all-listings"),
                 hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
                 Component: BrowseListingsPage
             },
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/update/:id",
-                loader: ({params}) => fetch(`http://localhost:3000/listings/${params.id}`),
+                loader: ({params}) => fetch(`https://roommate-finder-server-red.vercel.app/listings/${params.id}`),
                 hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
                 element: <PrivateRoute><UpdateFindPostPage></UpdateFindPostPage></PrivateRoute>
             },
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "details/:id",
-                loader: ({params}) => fetch(`http://localhost:3000/listings/${params.id}`),
+                loader: ({params}) => fetch(`https://roommate-finder-server-red.vercel.app/listings/${params.id}`),
                 hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
                 element: <PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
             }

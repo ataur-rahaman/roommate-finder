@@ -39,7 +39,7 @@ const DetailsPage = () => {
       });
       return;
     } else {
-      fetch("http://localhost:3000/likes", {
+      fetch("https://roommate-finder-server-red.vercel.app/likes", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -68,13 +68,13 @@ const DetailsPage = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/likes/count?thisId=${_id}`)
+    fetch(`https://roommate-finder-server-red.vercel.app/likes/count?thisId=${_id}`)
     .then(res => res.json())
     .then(likes => {
       setLikesData(likes.count);
     });
 
-    fetch(`http://localhost:3000/check-like?likerEmail=${user.email}&thisId=${_id}`)
+    fetch(`https://roommate-finder-server-red.vercel.app/check-like?likerEmail=${user.email}&thisId=${_id}`)
     .then(res => res.json())
     .then(checkData => {
       if(checkData?.likerEmail === user.email && checkData?.thisId === _id || userEmail === user?.email){
