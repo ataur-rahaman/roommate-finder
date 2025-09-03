@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router";
 import { spring } from "framer-motion";
@@ -12,6 +12,13 @@ const NavBar = () => {
   const userData = location.state;
   const { user, logOutUser } = use(AuthContext);
   const {theme, setTheme} = use(ThemeContext);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if(savedTheme){
+      setTheme(savedTheme);
+    }
+  },[setTheme])
   // console.log(user);
   const links = (
     <>
@@ -47,10 +54,12 @@ const NavBar = () => {
 
   const handleTheme = () => {
     if(theme === "light"){
-      setTheme("dark")
+      setTheme("dark");
+      localStorage.setItem("theme", "dark");
     }
-    if(theme === "dark"){
-      setTheme("light")
+    else{
+      setTheme("light");
+      localStorage.setItem("theme", "light");
     }
   }
   console.log(theme);
